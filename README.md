@@ -5,8 +5,6 @@
 # What did i use ?
       
       VIPER With RxSwift
-      Dependency injection
+      Modern Concurrency 
       Firebase/Auth
       Coding Design
-      
-    
