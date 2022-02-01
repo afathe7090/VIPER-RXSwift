@@ -23,9 +23,13 @@ protocol LoginPresernterProtocol: AnyObject{
     
     func viewDidLoad()
     func signIn()
+    
+    func goToRegisterPage()
 }
 
-protocol LoginRouterProtocol: AnyObject{}
+protocol LoginRouterProtocol: AnyObject{
+    func goToRegisterPage()
+}
 
 
 protocol LoginInputInteractorProtocol: AnyObject{

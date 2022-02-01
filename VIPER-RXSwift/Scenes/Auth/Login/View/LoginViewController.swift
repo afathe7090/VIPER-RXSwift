@@ -139,6 +139,16 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }()
     
     
+    private lazy var registerButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.tintColor = .white
+        btn.setAttributedTitle(NSAttributedString(string: "Register", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 25)]), for: .normal)
+        btn.layer.cornerRadius = 5
+        btn.layer.borderWidth = 1
+        btn.layer.borderColor = UIColor.yellow.cgColor
+        return btn
+    }()
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -148,6 +158,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         TextFiledBindingToPresenter()
         signInButtonPressed()
         showIndicator()
+        setRegisterButtonAction()
     }
     
     
@@ -159,6 +170,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         setUserNameField()
         setUserPassword()
         setSignInLayout()
+        setRegisterButtonLayout()
     }
     
     
@@ -203,6 +215,16 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         
     }
     
+    private func setRegisterButtonLayout(){
+        view.addSubview(registerButton)
+        NSLayoutConstraint.activate([
+            registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registerButton.widthAnchor.constraint(equalToConstant: 150),
+            registerButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
     
      //MARK: - binding
     func TextFiledBindingToPresenter(){
@@ -230,6 +252,14 @@ class LoginViewController: UIViewController, LoginViewProtocol {
             case false:
                 Hud.dismiss()
             }
+        }).disposed(by: bag)
+    }
+    
+    
+    func setRegisterButtonAction(){
+        registerButton.rx.tap.subscribe(onNext: { _ in
+            print(#function)
+            self.presenter.goToRegisterPage()
         }).disposed(by: bag)
     }
     

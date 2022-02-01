@@ -11,7 +11,7 @@ import UIKit
 
 class LoginRouter: LoginRouterProtocol {
     
-    weak var viewController: UIViewController?
+    var viewController: UIViewController?
     
     static func build()-> UIViewController {
         let view = LoginViewController()
@@ -22,5 +22,11 @@ class LoginRouter: LoginRouterProtocol {
         interactor.presenter = presenter
         view.presenter = presenter
         return view
+    }
+    
+    func goToRegisterPage(){
+        print("In Login Router")
+        let registerVC = RegisterRouter.build() 
+        viewController?.present(registerVC, animated: true, completion: nil)
     }
 }

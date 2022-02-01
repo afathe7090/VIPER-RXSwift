@@ -18,6 +18,11 @@
 		74AAFFDF27A451FE002AA3A7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AAFFDE27A451FE002AA3A7 /* LoginPresenter.swift */; };
 		74AAFFE127A4524E002AA3A7 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AAFFE027A4524E002AA3A7 /* LoginRouter.swift */; };
 		74AAFFE427A45291002AA3A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AAFFE227A45291002AA3A7 /* LoginViewController.swift */; };
+		74AEB71027A8A58400881303 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AEB70F27A8A58400881303 /* RegisterViewController.swift */; };
+		74AEB71227A8A5AC00881303 /* RegisterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AEB71127A8A5AC00881303 /* RegisterProtocols.swift */; };
+		74AEB71427A8A66900881303 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AEB71327A8A66900881303 /* RegisterRouter.swift */; };
+		74AEB71627A8A6C800881303 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AEB71527A8A6C800881303 /* RegisterInteractor.swift */; };
+		74AEB71827A8A80D00881303 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AEB71727A8A80D00881303 /* RegisterPresenter.swift */; };
 		74C25D2327A609B500C84682 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74C25D2227A609B500C84682 /* FirebaseAuth */; };
 		74C25D2627A60A1800C84682 /* FirebaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C25D2527A60A1800C84682 /* FirebaseWorker.swift */; };
 		74C25D2827A60A7D00C84682 /* AuthFirebaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C25D2727A60A7D00C84682 /* AuthFirebaseLayer.swift */; };
@@ -38,6 +43,11 @@
 		74AAFFDE27A451FE002AA3A7 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		74AAFFE027A4524E002AA3A7 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		74AAFFE227A45291002AA3A7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		74AEB70F27A8A58400881303 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		74AEB71127A8A5AC00881303 /* RegisterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocols.swift; sourceTree = "<group>"; };
+		74AEB71327A8A66900881303 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		74AEB71527A8A6C800881303 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
+		74AEB71727A8A80D00881303 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		74C25D2527A60A1800C84682 /* FirebaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWorker.swift; sourceTree = "<group>"; };
 		74C25D2727A60A7D00C84682 /* AuthFirebaseLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFirebaseLayer.swift; sourceTree = "<group>"; };
 		74C25D2927A61BBD00C84682 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -144,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				74AAFFD227A44F92002AA3A7 /* Login */,
+				74AEB70927A8A1E300881303 /* Register */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -198,6 +209,58 @@
 				74AAFFDA27A45099002AA3A7 /* LoginProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		74AEB70927A8A1E300881303 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				74AEB70E27A8A53C00881303 /* Router */,
+				74AEB70D27A8A53000881303 /* Interactor */,
+				74AEB70C27A8A52400881303 /* Presenter */,
+				74AEB70B27A8A50600881303 /* Protocols */,
+				74AEB70A27A8A1F300881303 /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		74AEB70A27A8A1F300881303 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74AEB70F27A8A58400881303 /* RegisterViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74AEB70B27A8A50600881303 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				74AEB71127A8A5AC00881303 /* RegisterProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		74AEB70C27A8A52400881303 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				74AEB71727A8A80D00881303 /* RegisterPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		74AEB70D27A8A53000881303 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				74AEB71527A8A6C800881303 /* RegisterInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		74AEB70E27A8A53C00881303 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				74AEB71327A8A66900881303 /* RegisterRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		74C25D2427A609F600C84682 /* FirebaseAuth */ = {
@@ -292,14 +355,19 @@
 				74C25D3027A62C2700C84682 /* Hud.swift in Sources */,
 				74AAFFE427A45291002AA3A7 /* LoginViewController.swift in Sources */,
 				74AAFFDD27A45189002AA3A7 /* LoginInteractor.swift in Sources */,
+				74AEB71027A8A58400881303 /* RegisterViewController.swift in Sources */,
 				74C25D2627A60A1800C84682 /* FirebaseWorker.swift in Sources */,
+				74AEB71427A8A66900881303 /* RegisterRouter.swift in Sources */,
+				74AEB71627A8A6C800881303 /* RegisterInteractor.swift in Sources */,
 				74AAFFDB27A45099002AA3A7 /* LoginProtocols.swift in Sources */,
 				74AAFFE127A4524E002AA3A7 /* LoginRouter.swift in Sources */,
 				74AAFFB327A44EE1002AA3A7 /* AppDelegate.swift in Sources */,
 				74AAFFB527A44EE1002AA3A7 /* SceneDelegate.swift in Sources */,
 				74AAFFDF27A451FE002AA3A7 /* LoginPresenter.swift in Sources */,
 				74C25D2C27A6291D00C84682 /* UIFont.swift in Sources */,
+				74AEB71227A8A5AC00881303 /* RegisterProtocols.swift in Sources */,
 				74C25D2827A60A7D00C84682 /* AuthFirebaseLayer.swift in Sources */,
+				74AEB71827A8A80D00881303 /* RegisterPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

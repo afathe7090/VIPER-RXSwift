@@ -53,5 +53,8 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
         print(error.localizedDescription)
     }
     
-    
+    func goToRegisterPage() {
+        print("In presenter Login ")
+        router?.goToRegisterPage()
+    }
 }
