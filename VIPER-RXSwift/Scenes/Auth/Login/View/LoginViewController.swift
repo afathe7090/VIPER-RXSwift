@@ -155,10 +155,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         super.viewDidLoad()
         presenter.viewDidLoad()
         TaskLayOut()
-        TextFiledBindingToPresenter()
-        signInButtonPressed()
-        showIndicator()
-        setRegisterButtonAction()
+        setBindingTextField()
     }
     
     
@@ -227,12 +224,22 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     
      //MARK: - binding
-    func TextFiledBindingToPresenter(){
+    
+    func setBindingTextField(){
+        Task{
+            await TextFiledBindingToPresenter()
+            await signInButtonPressed()
+            await showIndicator()
+            await setRegisterButtonAction()
+        }
+    }
+    
+    func TextFiledBindingToPresenter() async {
         emailTextField.rx.text.orEmpty.bind(to: presenter.emailBehavior).disposed(by: bag)
         passwordTextField.rx.text.orEmpty.bind(to: presenter.passwordBehavior).disposed(by: bag)
     }
     
-    func signInButtonPressed(){
+    func signInButtonPressed() async {
         loginButton.rx.tap.subscribe({[weak self ] _ in
             guard let self = self else{ return }
             self.presenter.signIn()
@@ -241,7 +248,9 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     
      //MARK: - Indicator
-    func showIndicator(){
+    
+    
+    func showIndicator() async {
         presenter.isLoadingBehavior.subscribe(onNext: {[weak self] state in
             
             guard let self = self else { return }
@@ -256,7 +265,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     
-    func setRegisterButtonAction(){
+    func setRegisterButtonAction() async {
         registerButton.rx.tap.subscribe(onNext: { _ in
             print(#function)
             self.presenter.goToRegisterVC_In_Presenter()

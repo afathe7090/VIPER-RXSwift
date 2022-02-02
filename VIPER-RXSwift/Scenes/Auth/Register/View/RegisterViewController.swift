@@ -251,6 +251,7 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         
         
         setActionButton()
+        setBinding()
     }
     
     private func setWelcomeLablwLayOut(){
@@ -327,22 +328,64 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
     
     
     private func setActionButton(){
-        setBackLogin()
+        Task{
+            await setBackLogin()
+            await setShowPassword()
+            await setShow_Re_password()
+        }
     }
     
     
-    private func setBackLogin(){
+    private func setBackLogin() async {
         loginButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.presenter.dismissView()
         }).disposed(by: bag)
     }
     
-    private func setShowPassword(){
-        
+    private func setShowPassword() async {
+        showPasswordButton.rx.tap.subscribe(onNext: { _ in
+            
+        }).disposed(by: bag)
     }
     
-    private func setShow_Re_password(){
-        
+    private func setShow_Re_password() async {
+        showRe_PasswordButton.rx.tap.subscribe(onNext: { _ in
+            
+        }).disposed(by: bag)
     }
+    
+    
+    //----------------------------------------------------------------------------------------------------------------
+    //=======>MARK: -  Binding 
+    //----------------------------------------------------------------------------------------------------------------
+    
+    private func setBinding(){
+        Task{
+            await setButtonRegisterIsValid()
+            await emailBindingToPresenter()
+        }
+    }
+    
+    
+    private func setButtonRegisterIsValid() async {
+        presenter.isValidToCreateUser()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] state in
+                
+            guard let self = self else { return }
+            self.registerButton.isEnabled = state
+            self.registerButton.alpha = state ? 1:0.5
+        }).disposed(by: bag)
+    }
+    
+    
+    private func emailBindingToPresenter() async {
+        emailTextField.rx.text.orEmpty.bind(to: presenter.emailBehavior).disposed(by: bag)
+        passwordTextField.rx.text.orEmpty.bind(to: presenter.passwordBehavior).disposed(by: bag)
+        Re_PasswordTextField.rx.text.orEmpty.bind(to: presenter.re_PasswordBehavior).disposed(by: bag)
+    }
+    
+    
+    
 }

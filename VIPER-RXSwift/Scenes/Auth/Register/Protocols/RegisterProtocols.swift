@@ -23,6 +23,11 @@ protocol RegisterPresenterProtocol: AnyObject {
     func viewDidLoad()
     func dismissView()
     func createUser()
+    func emailValid()-> Observable<Bool>
+    func passwordValid()-> Observable<Bool>
+    func re_PasswordVaild()-> Observable<Bool>
+    func pasword_RePassword_IsValid_Car()-> Observable<Bool>
+    func pasword_Is_Equal_RePassword()-> Observable<Bool>
     func isValidToCreateUser()-> Observable<Bool>
 }
 
