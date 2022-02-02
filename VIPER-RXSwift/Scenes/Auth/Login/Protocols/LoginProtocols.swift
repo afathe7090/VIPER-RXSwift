@@ -11,7 +11,8 @@ import RxCocoa
 
 protocol LoginViewProtocol: AnyObject {
     var presenter: LoginPresernterProtocol! {get set}
-    
+    func showIndectorView(state: Bool)
+    func changeStateOFLoginButton(state: Bool)
     
 }
 

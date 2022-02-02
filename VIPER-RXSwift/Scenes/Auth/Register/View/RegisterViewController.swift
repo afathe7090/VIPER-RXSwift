@@ -409,8 +409,8 @@ extension RegisterViewController {
     }
     
     func stateOfRegisterValid(state: Bool){
-        self.registerButton.isEnabled = state
-        self.registerButton.alpha = state ? 1:0.5
+        registerButton.isEnabled = state
+        registerButton.alpha = state ? 1:0.5
     }
 
 }

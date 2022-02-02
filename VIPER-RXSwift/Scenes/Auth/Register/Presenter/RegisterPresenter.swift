@@ -34,26 +34,10 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
         self.router = router
     }
     
-     //MARK: - Helper Functions
-    
-    func viewDidLoad(){
-        print("Register ViewDidLaod in Presenter !!!!")
-        bindingToSetUpIndicator()
-        changeStateOfRegisterButton()
-    }
-    
-    func successUserRegister() {
-        print("Succes To Create User")
-    }
-    
-    
-    func failUserRegister(_ error: Error) {
-        print(error.localizedDescription)
-    }
+
     
  
-     //MARK: - Help Validation
-    
+     //MARK: - Observable Helper 
     
     func emailValid()-> Observable<Bool>{
         return emailBehavior.map { str in
@@ -92,15 +76,23 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
         }
     }
     
-     //MARK: - Actions Func
-    
+
+    //----------------------------------------------------------------------------------------------------------------
+    //=======>MARK: -  dismiss Register
+    //----------------------------------------------------------------------------------------------------------------
     func dismissView(){
         router?.returnBackToLogin_From_Router()
     }
     
+    
+    
+    //----------------------------------------------------------------------------------------------------------------
+    //=======>MARK: -   Firebase Auth
+    //----------------------------------------------------------------------------------------------------------------
     func createUser(){
         isValidToCreateUser().subscribe(onNext: { [weak self] state in
             guard let self = self else { return }
+            self.isLoadingBehavior.accept(true)
             Task {
                 await self.interactor.signIn(email: self.emailBehavior, password: self.passwordBehavior)
             }
@@ -110,8 +102,9 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
     
     
     
-    
-    
+    //----------------------------------------------------------------------------------------------------------------
+    //=======>MARK: -  Valid Function With Actions
+    //----------------------------------------------------------------------------------------------------------------
     private func bindingToSetUpIndicator(){
         isLoadingBehavior
             .observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] state in
@@ -131,4 +124,28 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
         }).disposed(by: bag)
     }
     
+}
+
+//----------------------------------------------------------------------------------------------------------------
+//=======>MARK: -  Protocols Functiosn
+//----------------------------------------------------------------------------------------------------------------
+extension RegisterPresenter{
+    //MARK: - Helper Functions
+   
+   func viewDidLoad(){
+       print("Register ViewDidLaod in Presenter !!!!")
+       bindingToSetUpIndicator()
+       changeStateOfRegisterButton()
+   }
+   
+   func successUserRegister() {
+       print("Succes To Create User")
+       isLoadingBehavior.accept(false)
+   }
+   
+   
+   func failUserRegister(_ error: Error) {
+       isLoadingBehavior.accept(false)
+       print(error.localizedDescription)
+   }
 }

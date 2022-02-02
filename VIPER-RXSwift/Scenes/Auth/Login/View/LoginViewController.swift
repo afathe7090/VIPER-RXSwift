@@ -229,7 +229,6 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         Task{
             await TextFiledBindingToPresenter()
             await signInButtonPressed()
-            await showIndicator()
             await setRegisterButtonAction()
         }
     }
@@ -250,20 +249,14 @@ class LoginViewController: UIViewController, LoginViewProtocol {
      //MARK: - Indicator
     
     
-    func showIndicator() async {
-        presenter.isLoadingBehavior.subscribe(onNext: {[weak self] state in
-            
-            guard let self = self else { return }
-            
-            switch state{
-            case true :
-                Hud.showHud(in: self.view)
-            case false:
-                Hud.dismiss()
-            }
-        }).disposed(by: bag)
+    func showIndectorView(state: Bool){
+        state ? Hud.showHud(in: view):Hud.dismiss()
     }
     
+    func changeStateOFLoginButton(state: Bool){
+        loginButton.isEnabled = state
+        loginButton.alpha = state ? 1:0.5
+    }
     
     func setRegisterButtonAction() async {
         registerButton.rx.tap.subscribe(onNext: { _ in

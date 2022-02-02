@@ -17,6 +17,9 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
     var passwordBehavior: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     var isLoadingBehavior: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    
+    private let bag = DisposeBag()
+    
     //MARK: -  Data Protocol
     weak var view: LoginViewProtocol?
     private let interactor: LoginInputInteractorProtocol
@@ -31,9 +34,15 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
     }
     
     
-     //MARK: - Helper functions
+    //MARK: - Helper functions
     func viewDidLoad() {
         print("In Presenter")
+        
+        Task {
+            await startBindingForIndectator()
+            await changeStateForUI()
+        }
+        
     }
     
     func signIn() {
@@ -57,4 +66,25 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
         print("In presenter Login ")
         router?.goToRegisterVC_In_Router()
     }
+    
+    func startBindingForIndectator() async {
+        isLoadingBehavior
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self ] state in
+            guard let self = self else { return }
+            self.view?.showIndectorView(state: state)
+        }).disposed(by: bag)
+    }
+    
+    
+    func changeStateForUI() async{
+        Observable.combineLatest(emailBehavior, passwordBehavior).map { (email,pass) in
+            return email.count >= 8 && pass.count >= 8
+        }.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] state in
+            guard let self = self else{ return }
+            self.view?.changeStateOFLoginButton(state: state)
+        }).disposed(by: bag)
+    }
+    
 }
