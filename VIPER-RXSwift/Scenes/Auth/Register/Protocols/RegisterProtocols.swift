@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+import RxCocoa
+import RxSwift
 
 protocol RegisterViewProtocol: AnyObject {
     var presenter: RegisterPresenterProtocol! { get set }
@@ -22,6 +23,10 @@ protocol RegisterRouterProtocol: AnyObject{
 
 protocol RegisterInPutInteractorProtocol: AnyObject{
     var presenter: RegisterOutputInteractorProtocol? { get set }
+    func signIn(email: BehaviorRelay<String> , password: BehaviorRelay<String>) async
 }
 
-protocol RegisterOutputInteractorProtocol: AnyObject{}
+protocol RegisterOutputInteractorProtocol: AnyObject{
+    func successUserRegister()
+    func failUserRegister(_ error: Error)
+}

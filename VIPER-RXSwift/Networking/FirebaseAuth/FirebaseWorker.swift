@@ -23,5 +23,7 @@ class FirebaseWorker{
         return await authLayer.signIn(withEmail: email.value, password: password.value)
     }
     
-    
+    func signUp(email: BehaviorRelay<String> , password: BehaviorRelay<String>) async -> (AuthDataResult? , Error?) {
+        return await authLayer.signUp(withEmail: email.value, password: password.value)
+    }
 }

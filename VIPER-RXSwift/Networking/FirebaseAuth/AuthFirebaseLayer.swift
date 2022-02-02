@@ -10,6 +10,7 @@ import Firebase
 
 protocol FirebaseAuth {
     func signIn(withEmail: String , password: String) async  -> (AuthDataResult?, Error?)
+    func signUp(withEmail: String, password: String) async ->(AuthDataResult? , Error?)
 }
 
 class FirebaseAuthLayer: FirebaseAuth {
@@ -21,4 +22,13 @@ class FirebaseAuthLayer: FirebaseAuth {
             }
         })
     }
+    
+    func signUp(withEmail: String, password: String) async ->(AuthDataResult? , Error?){
+        return await withCheckedContinuation({ continuation in
+            Auth.auth().createUser(withEmail: withEmail, password: password) { result, error in
+                continuation.resume(returning: (result, error))
+            }
+        })
+    }
+    
 }
