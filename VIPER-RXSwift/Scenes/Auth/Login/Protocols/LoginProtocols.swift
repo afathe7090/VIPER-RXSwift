@@ -24,11 +24,11 @@ protocol LoginPresernterProtocol: AnyObject{
     func viewDidLoad()
     func signIn()
     
-    func goToRegisterPage()
+    func goToRegisterVC_In_Presenter()
 }
 
 protocol LoginRouterProtocol: AnyObject{
-    func goToRegisterPage()
+    func goToRegisterVC_In_Router()
 }
 
 

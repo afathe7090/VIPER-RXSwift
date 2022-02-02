@@ -185,7 +185,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     private func setUserNameField() {
-        self.view.addSubview(self.stackForUserName)
+        view.addSubview(self.stackForUserName)
         NSLayoutConstraint.activate([
             stackForUserName.topAnchor.constraint(equalTo: stackOfTitle.bottomAnchor, constant: 75),
             stackForUserName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -259,7 +259,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     func setRegisterButtonAction(){
         registerButton.rx.tap.subscribe(onNext: { _ in
             print(#function)
-            self.presenter.goToRegisterPage()
+            self.presenter.goToRegisterVC_In_Presenter()
         }).disposed(by: bag)
     }
     
