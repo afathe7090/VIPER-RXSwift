@@ -15,7 +15,15 @@ protocol RegisterViewProtocol: AnyObject {
 
 protocol RegisterPresenterProtocol: AnyObject {
     var view: RegisterViewProtocol? { get set }
+    var emailBehavior: BehaviorRelay<String> { get set}
+    var passwordBehavior: BehaviorRelay<String> { get set }
+    var re_PasswordBehavior: BehaviorRelay<String> { get set}
+    var isLoadingBehavior: BehaviorRelay<Bool> { get set }
+    
     func viewDidLoad()
+    func dismissView()
+    func createUser()
+    func isValidToCreateUser()-> Observable<Bool>
 }
 
 protocol RegisterRouterProtocol: AnyObject{

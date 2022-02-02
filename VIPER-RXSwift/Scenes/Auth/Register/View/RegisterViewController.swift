@@ -15,7 +15,7 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
      //MARK: -  Protocols 
     var presenter: RegisterPresenterProtocol!
     
-
+    private let bag = DisposeBag()
     
     //----------------------------------------------------------------------------------------------------------------
     //=======>MARK: -  Design
@@ -248,6 +248,9 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         setUserRe_Password()
         setRegisterButtonLayout()
         setLoginButtonLayOut()
+        
+        
+        setActionButton()
     }
     
     private func setWelcomeLablwLayOut(){
@@ -318,4 +321,28 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         ])
     }
     
+    
+    
+     //MARK: - Action Button
+    
+    
+    private func setActionButton(){
+        setBackLogin()
+    }
+    
+    
+    private func setBackLogin(){
+        loginButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.presenter.dismissView()
+        }).disposed(by: bag)
+    }
+    
+    private func setShowPassword(){
+        
+    }
+    
+    private func setShow_Re_password(){
+        
+    }
 }
