@@ -364,7 +364,8 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         Task{
             await setButtonRegisterIsValid()
             await emailBindingToPresenter()
-            await showIndicatorBindingToPresenter() 
+            await showIndicatorBindingToPresenter()
+            await registerActionsWithCreateUser() 
         }
     }
     
@@ -395,4 +396,11 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         }).disposed(by: bag)
     }
     
+    private func registerActionsWithCreateUser() async {
+        registerButton.rx.tap.observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self ] _ in
+                guard let self = self else { return }
+                self.presenter.createUser()
+        }).disposed(by: bag)
+    }
 }
