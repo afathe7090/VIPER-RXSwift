@@ -364,6 +364,7 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         Task{
             await setButtonRegisterIsValid()
             await emailBindingToPresenter()
+            await showIndicatorBindingToPresenter() 
         }
     }
     
@@ -386,6 +387,12 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         Re_PasswordTextField.rx.text.orEmpty.bind(to: presenter.re_PasswordBehavior).disposed(by: bag)
     }
     
-    
+    private func showIndicatorBindingToPresenter() async {
+        presenter.isLoadingBehavior
+            .observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] state in
+                guard let self = self else { return}
+                state ? Hud.showHud(in: self.view):Hud.dismiss()
+        }).disposed(by: bag)
+    }
     
 }

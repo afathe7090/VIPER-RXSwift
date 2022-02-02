@@ -95,8 +95,11 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
     func dismissView(){
         
         // Note Check Vaild before done
-        router?.returnBackToLogin_From_Router()
         
+        isValidToCreateUser().subscribe(onNext: {[weak self] state in
+            guard let self = self else { return }
+            if state == true { self.router?.returnBackToLogin_From_Router() }
+        }).disposed(by: bag)
         
     }
     
