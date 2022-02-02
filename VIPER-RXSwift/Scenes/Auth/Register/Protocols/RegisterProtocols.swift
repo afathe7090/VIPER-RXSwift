@@ -11,6 +11,8 @@ import RxSwift
 
 protocol RegisterViewProtocol: AnyObject {
     var presenter: RegisterPresenterProtocol! { get set }
+    func showIndicatorWith(state: Bool)
+    func stateOfRegisterValid(state: Bool)
 }
 
 protocol RegisterPresenterProtocol: AnyObject {

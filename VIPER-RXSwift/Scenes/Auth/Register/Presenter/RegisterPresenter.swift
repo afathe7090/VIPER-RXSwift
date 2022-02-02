@@ -38,6 +38,8 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
     
     func viewDidLoad(){
         print("Register ViewDidLaod in Presenter !!!!")
+        bindingToSetUpIndicator()
+        changeStateOfRegisterButton()
     }
     
     func successUserRegister() {
@@ -93,14 +95,7 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
      //MARK: - Actions Func
     
     func dismissView(){
-        
-        // Note Check Vaild before done
-        
-        isValidToCreateUser().subscribe(onNext: {[weak self] state in
-            guard let self = self else { return }
-            if state == true { self.router?.returnBackToLogin_From_Router() }
-        }).disposed(by: bag)
-        
+        router?.returnBackToLogin_From_Router()
     }
     
     func createUser(){
@@ -109,6 +104,30 @@ class RegisterPresenter: RegisterPresenterProtocol , RegisterOutputInteractorPro
             Task {
                 await self.interactor.signIn(email: self.emailBehavior, password: self.passwordBehavior)
             }
+        }).disposed(by: bag)
+    }
+    
+    
+    
+    
+    
+    
+    private func bindingToSetUpIndicator(){
+        isLoadingBehavior
+            .observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] state in
+                guard let self = self else { return }
+                self.view?.showIndicatorWith(state: state)
+        }).disposed(by: bag)
+    }
+    
+    
+    private func changeStateOfRegisterButton(){
+        isValidToCreateUser()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] state in
+                
+            guard let self = self else { return }
+                self.view?.stateOfRegisterValid(state: state)
         }).disposed(by: bag)
     }
     

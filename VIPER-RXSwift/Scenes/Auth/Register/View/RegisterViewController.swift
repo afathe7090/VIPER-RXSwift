@@ -362,25 +362,13 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
     
     private func setBinding(){
         Task{
-            await setButtonRegisterIsValid()
             await emailBindingToPresenter()
-            await showIndicatorBindingToPresenter()
-            await registerActionsWithCreateUser() 
+            await registerActionsWithCreateUser()
+            await loginBackButtonAction()
         }
     }
     
-    
-    private func setButtonRegisterIsValid() async {
-        presenter.isValidToCreateUser()
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: {[weak self] state in
-                
-            guard let self = self else { return }
-            self.registerButton.isEnabled = state
-            self.registerButton.alpha = state ? 1:0.5
-        }).disposed(by: bag)
-    }
-    
+   
     
     private func emailBindingToPresenter() async {
         emailTextField.rx.text.orEmpty.bind(to: presenter.emailBehavior).disposed(by: bag)
@@ -388,13 +376,6 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
         Re_PasswordTextField.rx.text.orEmpty.bind(to: presenter.re_PasswordBehavior).disposed(by: bag)
     }
     
-    private func showIndicatorBindingToPresenter() async {
-        presenter.isLoadingBehavior
-            .observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] state in
-                guard let self = self else { return}
-                state ? Hud.showHud(in: self.view):Hud.dismiss()
-        }).disposed(by: bag)
-    }
     
     private func registerActionsWithCreateUser() async {
         registerButton.rx.tap.observe(on: MainScheduler.instance)
@@ -403,4 +384,30 @@ class RegisterViewController: UIViewController , RegisterViewProtocol{
                 self.presenter.createUser()
         }).disposed(by: bag)
     }
+    
+    private func loginBackButtonAction() async{
+        loginButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else{ return }
+            self.presenter.dismissView()
+        }).disposed(by: bag)
+    }
+    
+    
+}
+
+
+//----------------------------------------------------------------------------------------------------------------
+//=======>MARK: -   Extension
+//----------------------------------------------------------------------------------------------------------------
+extension RegisterViewController {
+    
+    func showIndicatorWith(state: Bool){
+        state ? Hud.showHud(in: view):Hud.dismiss()
+    }
+    
+    func stateOfRegisterValid(state: Bool){
+        self.registerButton.isEnabled = state
+        self.registerButton.alpha = state ? 1:0.5
+    }
+
 }
