@@ -19,6 +19,7 @@ protocol RegisterPresenterProtocol: AnyObject {
 }
 
 protocol RegisterRouterProtocol: AnyObject{
+    func returnBackToLogin_From_Router()
 }
 
 protocol RegisterInPutInteractorProtocol: AnyObject{

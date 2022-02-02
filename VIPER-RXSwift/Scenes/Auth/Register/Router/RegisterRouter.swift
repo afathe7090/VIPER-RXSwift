@@ -26,9 +26,8 @@ class RegisterRouter: RegisterRouterProtocol {
     }
     
     
-    
-    
-    
-    
+    func returnBackToLogin_From_Router(){
+        viewConteroller?.dismiss(animated: true, completion: nil)
+    }
     
 }
