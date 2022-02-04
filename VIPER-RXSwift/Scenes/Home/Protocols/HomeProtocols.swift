@@ -15,6 +15,8 @@ protocol HomeViewProtocol: AnyObject {
 
 protocol HomePresenterProtocol: AnyObject {
     var view: HomeViewProtocol? { get set }
+    var newsObservable: Observable<[Article]> { get }
+    
     func viewDidLoad()
 }
 

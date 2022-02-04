@@ -34,7 +34,7 @@ class LoginRouter: LoginRouterProtocol {
     func startToGoHomePage_In_Router(){
         let homeVC = UINavigationController(rootViewController: HomeRouter.build())
         homeVC.modalPresentationStyle = .fullScreen
-        viewController?.present(homeVC, animated: true, completion: nil)
+        self.viewController?.present(homeVC, animated: false, completion: nil)
     }
     
 }

@@ -52,8 +52,10 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
     }
     
     func succesfullSignIn() {
-        isLoadingBehavior.accept(false)
-        print("Succesfull Sign in")
+        DispatchQueue.main.async {
+            self.isLoadingBehavior.accept(false)
+            self.router?.startToGoHomePage_In_Router()
+        }
     }
     
     func fetchSignInError(_ error: Error) {

@@ -12,6 +12,13 @@ import RxCocoa
 
 class HomePresenter: HomePresenterProtocol , HomeOutputInteractorProtocol{
     
+     //MARK: - Observable
+    
+    private let newsSubject: PublishSubject<[Article]> = PublishSubject<[Article]>()
+    
+    var newsObservable: Observable<[Article]> {
+        return newsSubject.asObserver()
+    }
     
     
      //MARK: - Protocols
@@ -47,7 +54,8 @@ class HomePresenter: HomePresenterProtocol , HomeOutputInteractorProtocol{
     
     
     func successFetchNews(_ news: News) {
-        
+        guard let articles = news.articles else { return }
+        newsSubject.onNext(articles)
     }
     
     func failToFetchNews() {
@@ -55,13 +63,7 @@ class HomePresenter: HomePresenterProtocol , HomeOutputInteractorProtocol{
     }
     
     
-    func configureCell(cell: NewsCell, indexPath: IndexPath){
-        
-    }
-    
-    
-    
-    
+   
     
     
     

@@ -30,6 +30,7 @@ protocol LoginPresernterProtocol: AnyObject{
 
 protocol LoginRouterProtocol: AnyObject{
     func goToRegisterVC_In_Router()
+    func startToGoHomePage_In_Router()
 }
 
 

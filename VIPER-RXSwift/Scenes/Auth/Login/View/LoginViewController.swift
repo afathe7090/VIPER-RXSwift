@@ -239,7 +239,8 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     func signInButtonPressed() async {
-        loginButton.rx.tap.subscribe({[weak self ] _ in
+        loginButton.rx.tap.observe(on: MainScheduler.instance)
+            .subscribe({[weak self ] _ in
             guard let self = self else{ return }
             self.presenter.signIn()
         }).disposed(by: bag)
