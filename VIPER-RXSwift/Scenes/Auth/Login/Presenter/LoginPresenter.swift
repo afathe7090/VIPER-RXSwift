@@ -16,8 +16,7 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
     var emailBehavior: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     var passwordBehavior: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     var isLoadingBehavior: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    
-    
+   
     private let bag = DisposeBag()
     
     //MARK: -  Data Protocol

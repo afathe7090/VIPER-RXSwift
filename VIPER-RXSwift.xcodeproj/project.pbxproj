@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74192C6927AC288E0008207A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74192C6827AC288E0008207A /* HomePresenter.swift */; };
+		74192C6D27AC28F40008207A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74192C6C27AC28F40008207A /* HomeInteractor.swift */; };
+		74192C7327AC36420008207A /* HomeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74192C7227AC36420008207A /* HomeProtocols.swift */; };
+		74192C7527AC36570008207A /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74192C7427AC36570008207A /* HomeRouter.swift */; };
+		74192C7727AC36830008207A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74192C7627AC36830008207A /* HomeViewController.swift */; };
+		74A7A12327AC6362006FD7F8 /* BrandCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7A12227AC6362006FD7F8 /* BrandCells.swift */; };
 		74AAFFB327A44EE1002AA3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AAFFB227A44EE1002AA3A7 /* AppDelegate.swift */; };
 		74AAFFB527A44EE1002AA3A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AAFFB427A44EE1002AA3A7 /* SceneDelegate.swift */; };
 		74AAFFBC27A44EE7002AA3A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74AAFFBB27A44EE7002AA3A7 /* Assets.xcassets */; };
@@ -32,6 +38,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		74192C6827AC288E0008207A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		74192C6C27AC28F40008207A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		74192C7227AC36420008207A /* HomeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocols.swift; sourceTree = "<group>"; };
+		74192C7427AC36570008207A /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		74192C7627AC36830008207A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		74A7A12227AC6362006FD7F8 /* BrandCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCells.swift; sourceTree = "<group>"; };
 		74AAFFAF27A44EE1002AA3A7 /* VIPER-RXSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VIPER-RXSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AAFFB227A44EE1002AA3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74AAFFB427A44EE1002AA3A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +81,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		74192C6527AC28570008207A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				74192C6E27AC36100008207A /* Protocols */,
+				74192C6B27AC28DC0008207A /* Interactor */,
+				74192C6A27AC28CE0008207A /* Router */,
+				74192C6727AC286E0008207A /* Presenter */,
+				74192C6627AC28670008207A /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		74192C6627AC28670008207A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74A7A12127AC633A006FD7F8 /* TableViewCell */,
+				74A7A12027AC6330006FD7F8 /* ViewController  */,
+				74192C7627AC36830008207A /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74192C6727AC286E0008207A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				74192C6827AC288E0008207A /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		74192C6A27AC28CE0008207A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				74192C7427AC36570008207A /* HomeRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		74192C6B27AC28DC0008207A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				74192C6C27AC28F40008207A /* HomeInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		74192C6E27AC36100008207A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				74192C7227AC36420008207A /* HomeProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		74A7A12027AC6330006FD7F8 /* ViewController  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "ViewController ";
+			sourceTree = "<group>";
+		};
+		74A7A12127AC633A006FD7F8 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				74A7A12227AC6362006FD7F8 /* BrandCells.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		74AAFFA627A44EE1002AA3A7 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +210,7 @@
 		74AAFFCE27A44F5F002AA3A7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				74192C6527AC28570008207A /* Home */,
 				74AAFFD127A44F8A002AA3A7 /* Auth */,
 			);
 			path = Scenes;
@@ -354,18 +436,24 @@
 			files = (
 				74C25D3027A62C2700C84682 /* Hud.swift in Sources */,
 				74AAFFE427A45291002AA3A7 /* LoginViewController.swift in Sources */,
+				74192C7327AC36420008207A /* HomeProtocols.swift in Sources */,
+				74A7A12327AC6362006FD7F8 /* BrandCells.swift in Sources */,
 				74AAFFDD27A45189002AA3A7 /* LoginInteractor.swift in Sources */,
 				74AEB71027A8A58400881303 /* RegisterViewController.swift in Sources */,
+				74192C7727AC36830008207A /* HomeViewController.swift in Sources */,
 				74C25D2627A60A1800C84682 /* FirebaseWorker.swift in Sources */,
 				74AEB71427A8A66900881303 /* RegisterRouter.swift in Sources */,
 				74AEB71627A8A6C800881303 /* RegisterInteractor.swift in Sources */,
 				74AAFFDB27A45099002AA3A7 /* LoginProtocols.swift in Sources */,
+				74192C7527AC36570008207A /* HomeRouter.swift in Sources */,
 				74AAFFE127A4524E002AA3A7 /* LoginRouter.swift in Sources */,
 				74AAFFB327A44EE1002AA3A7 /* AppDelegate.swift in Sources */,
 				74AAFFB527A44EE1002AA3A7 /* SceneDelegate.swift in Sources */,
+				74192C6927AC288E0008207A /* HomePresenter.swift in Sources */,
 				74AAFFDF27A451FE002AA3A7 /* LoginPresenter.swift in Sources */,
 				74C25D2C27A6291D00C84682 /* UIFont.swift in Sources */,
 				74AEB71227A8A5AC00881303 /* RegisterProtocols.swift in Sources */,
+				74192C6D27AC28F40008207A /* HomeInteractor.swift in Sources */,
 				74C25D2827A60A7D00C84682 /* AuthFirebaseLayer.swift in Sources */,
 				74AEB71827A8A80D00881303 /* RegisterPresenter.swift in Sources */,
 			);
