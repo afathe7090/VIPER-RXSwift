@@ -43,7 +43,9 @@ class HomeViewController: UIViewController,HomeViewProtocol {
     //----------------------------------------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .yellow
+        presenter.viewDidLoad()
     }
     
 
