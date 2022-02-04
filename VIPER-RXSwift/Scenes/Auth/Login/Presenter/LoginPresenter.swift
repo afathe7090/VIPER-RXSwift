@@ -35,8 +35,6 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
     
     //MARK: - Helper functions
     func viewDidLoad() {
-        print("In Presenter")
-        
         Task {
             await startBindingForIndectator()
             await changeStateForUI()
@@ -64,7 +62,6 @@ class LoginPresenter: LoginPresernterProtocol, LoginOutputInteractorProtocol{
     }
     
     func goToRegisterVC_In_Presenter() {
-        print("In presenter Login ")
         router?.goToRegisterVC_In_Router()
     }
     

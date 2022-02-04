@@ -25,7 +25,6 @@ class LoginRouter: LoginRouterProtocol {
     }
     
     func goToRegisterVC_In_Router(){
-        print("In Login Router")
         let rootNaviationRegister = UINavigationController(rootViewController: RegisterRouter.build())
         rootNaviationRegister.modalPresentationStyle = .fullScreen
         viewController?.present(rootNaviationRegister, animated: true, completion: nil)

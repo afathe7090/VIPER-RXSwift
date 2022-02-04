@@ -25,11 +25,9 @@ class HomeInteractor: HomeInputInteractorProtocol {
 
         if let news = news {
             // Success
-            print(news)
             presenter?.successFetchNews(news)
         }else{
             // Fail
-            print("Error In Interactor")
             presenter?.failToFetchNews()
         }
         

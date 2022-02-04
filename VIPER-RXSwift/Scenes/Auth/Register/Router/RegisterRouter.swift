@@ -14,7 +14,6 @@ class RegisterRouter: RegisterRouterProtocol {
     var viewConteroller: UIViewController?
     
     static func build()-> UIViewController {
-        print("In Build")
         let view = RegisterViewController()
         let router = RegisterRouter()
         let interactor = RegisterInteractor()

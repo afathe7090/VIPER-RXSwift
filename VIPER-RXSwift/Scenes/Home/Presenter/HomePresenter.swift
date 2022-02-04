@@ -59,7 +59,7 @@ class HomePresenter: HomePresenterProtocol , HomeOutputInteractorProtocol{
     }
     
     func failToFetchNews() {
-        
+        print("Fail TO Get news")
     }
     
     

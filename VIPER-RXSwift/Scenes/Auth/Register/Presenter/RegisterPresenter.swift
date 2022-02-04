@@ -133,14 +133,13 @@ extension RegisterPresenter{
     //MARK: - Helper Functions
    
    func viewDidLoad(){
-       print("Register ViewDidLaod in Presenter !!!!")
        bindingToSetUpIndicator()
        changeStateOfRegisterButton()
    }
    
    func successUserRegister() {
-       print("Succes To Create User")
        isLoadingBehavior.accept(false)
+       dismissView()
    }
    
    
